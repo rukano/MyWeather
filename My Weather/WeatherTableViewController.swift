@@ -17,9 +17,9 @@ class WeatherTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var testItem1 = WeatherData()
-        var testItem2 = WeatherData()
-        var testItem3 = WeatherData()
+        let testItem1 = WeatherData()
+        let testItem2 = WeatherData()
+        let testItem3 = WeatherData()
         
         testItem1.city = "Berlin"
         testItem1.temperature = "30℃"
@@ -47,7 +47,27 @@ class WeatherTableViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func addNewCity(sender: UIBarButtonItem) {
-        print("Add new city and look for data")
+        let alert = UIAlertController(title: "Weather at", message: "Enter city", preferredStyle: .Alert)
+        let searchAction = UIAlertAction(title: "Search", style: .Default) { (action:UIAlertAction) -> Void in
+            let textField = alert.textFields!.first
+            let city = textField!.text!
+            // TODO: Make the URL request
+            if city.characters.count > 0 {
+                let data = WeatherData()
+                data.city = city
+                self.weatherItems.append(data)
+                self.tableView.reloadData()
+            }
+        }
+        let cancelAction = UIAlertAction(title:"Cancel", style: .Cancel) { (action:UIAlertAction) -> Void in
+            print("cancel search")
+        }
+        alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in }
+        alert.addAction(cancelAction)
+        alert.addAction(searchAction)
+        
+        presentViewController(alert, animated: true, completion: nil)
+        
     }
 
     // MARK: - Table view data source

@@ -8,10 +8,19 @@
 
 import Foundation
 
-struct WeatherData {
+class WeatherData {
     var city = "City not found"
     var temperature = "No temperature data"
     var wind = "No wind data"
     var pressure = "No pressure data"
     var forecast = "No forecast found"
+    
+    init() {
+        
+    }
+    
+    func requestData() {
+        
+    }
+    
 }
