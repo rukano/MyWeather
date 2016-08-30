@@ -11,6 +11,7 @@ import UIKit
 class WeatherDetailViewController: UIViewController {
     
     // MARK: - Properties
+    
     var weatherData: WeatherData?
     
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -19,7 +20,7 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var forecastLabel: UILabel!
     
     
-    
+    // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
         

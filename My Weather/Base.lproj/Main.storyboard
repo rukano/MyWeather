@@ -126,12 +126,12 @@
                                         </activityIndicatorView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="topMargin" secondItem="vBL-ob-yAW" secondAttribute="top" id="KE8-1r-9Ph"/>
-                                        <constraint firstItem="nC7-g0-1pI" firstAttribute="centerY" secondItem="2aL-q2-DvT" secondAttribute="centerY" id="LLX-Ft-17x"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="vKi-UP-1fX" secondAttribute="leading" id="PiW-Ly-rvx"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="vBL-ob-yAW" secondAttribute="leading" id="afK-dn-hKQ"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="vKi-UP-1fX" secondAttribute="bottom" id="dvb-c9-1se"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="nC7-g0-1pI" secondAttribute="trailing" id="met-nL-E5r"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="nC7-g0-1pI" secondAttribute="trailing" id="COS-TC-O2b"/>
+                                        <constraint firstItem="nC7-g0-1pI" firstAttribute="centerY" secondItem="2aL-q2-DvT" secondAttribute="centerY" id="HcZ-f2-h93"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="vBL-ob-yAW" secondAttribute="leading" id="Hd7-C1-7uz"/>
+                                        <constraint firstAttribute="topMargin" secondItem="vBL-ob-yAW" secondAttribute="top" id="IUc-zJ-mdS"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="vKi-UP-1fX" secondAttribute="leading" id="KKI-Ep-mbH"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="vKi-UP-1fX" secondAttribute="bottom" id="eSh-s3-pIw"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -148,7 +148,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Current weather" id="qYp-1L-EFO">
                         <barButtonItem key="backBarButtonItem" title="Back" id="xva-Qd-6uG"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ruu-MZ-kOL"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ruu-MZ-kOL">
+                            <connections>
+                                <action selector="addNewCity:" destination="aDB-1L-bYK" id="yG6-M5-qq4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yv4-QM-1pZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

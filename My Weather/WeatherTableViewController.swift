@@ -13,6 +13,7 @@ class WeatherTableViewController: UITableViewController {
     // MARK: - Properties
     var weatherItems = [WeatherData]()
 
+    // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,6 +46,9 @@ class WeatherTableViewController: UITableViewController {
     
     // MARK: - Actions
     
+    @IBAction func addNewCity(sender: UIBarButtonItem) {
+        print("Add new city and look for data")
+    }
 
     // MARK: - Table view data source
 
