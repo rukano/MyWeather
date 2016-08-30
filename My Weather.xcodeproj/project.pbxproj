@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		77189D941D75ECB200372956 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77189D931D75ECB200372956 /* AppDelegate.swift */; };
-		77189D961D75ECB200372956 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77189D951D75ECB200372956 /* ViewController.swift */; };
+		77189D961D75ECB200372956 /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77189D951D75ECB200372956 /* WeatherDetailViewController.swift */; };
 		77189D991D75ECB200372956 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77189D971D75ECB200372956 /* Main.storyboard */; };
 		77189D9C1D75ECB200372956 /* My_Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77189D9A1D75ECB200372956 /* My_Weather.xcdatamodeld */; };
 		77189D9E1D75ECB200372956 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77189D9D1D75ECB200372956 /* Assets.xcassets */; };
 		77189DA11D75ECB200372956 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77189D9F1D75ECB200372956 /* LaunchScreen.storyboard */; };
 		77189DAC1D75ECB200372956 /* My_WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77189DAB1D75ECB200372956 /* My_WeatherTests.swift */; };
 		77189DB71D75ECB200372956 /* My_WeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77189DB61D75ECB200372956 /* My_WeatherUITests.swift */; };
+		77189DC91D75F36400372956 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77189DC81D75F36400372956 /* WeatherTableViewCell.swift */; };
+		77189DCB1D75F44800372956 /* WeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77189DCA1D75F44800372956 /* WeatherTableViewController.swift */; };
+		77189DCD1D75F51600372956 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77189DCC1D75F51600372956 /* WeatherData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +40,7 @@
 /* Begin PBXFileReference section */
 		77189D901D75ECB200372956 /* My Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77189D931D75ECB200372956 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		77189D951D75ECB200372956 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		77189D951D75ECB200372956 /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
 		77189D981D75ECB200372956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77189D9B1D75ECB200372956 /* My_Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Weather.xcdatamodel; sourceTree = "<group>"; };
 		77189D9D1D75ECB200372956 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +52,9 @@
 		77189DB21D75ECB200372956 /* My WeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My WeatherUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77189DB61D75ECB200372956 /* My_WeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_WeatherUITests.swift; sourceTree = "<group>"; };
 		77189DB81D75ECB200372956 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77189DC81D75F36400372956 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
+		77189DCA1D75F44800372956 /* WeatherTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTableViewController.swift; sourceTree = "<group>"; };
+		77189DCC1D75F51600372956 /* WeatherData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +106,10 @@
 			isa = PBXGroup;
 			children = (
 				77189D931D75ECB200372956 /* AppDelegate.swift */,
-				77189D951D75ECB200372956 /* ViewController.swift */,
+				77189D951D75ECB200372956 /* WeatherDetailViewController.swift */,
+				77189DCA1D75F44800372956 /* WeatherTableViewController.swift */,
+				77189DC81D75F36400372956 /* WeatherTableViewCell.swift */,
+				77189DCC1D75F51600372956 /* WeatherData.swift */,
 				77189D971D75ECB200372956 /* Main.storyboard */,
 				77189D9D1D75ECB200372956 /* Assets.xcassets */,
 				77189D9F1D75ECB200372956 /* LaunchScreen.storyboard */,
@@ -259,8 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77189D961D75ECB200372956 /* ViewController.swift in Sources */,
+				77189DC91D75F36400372956 /* WeatherTableViewCell.swift in Sources */,
+				77189DCB1D75F44800372956 /* WeatherTableViewController.swift in Sources */,
+				77189D961D75ECB200372956 /* WeatherDetailViewController.swift in Sources */,
 				77189D941D75ECB200372956 /* AppDelegate.swift in Sources */,
+				77189DCD1D75F51600372956 /* WeatherData.swift in Sources */,
 				77189D9C1D75ECB200372956 /* My_Weather.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +498,7 @@
 				77189DBD1D75ECB200372956 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		77189DBE1D75ECB200372956 /* Build configuration list for PBXNativeTarget "My WeatherTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +507,7 @@
 				77189DC01D75ECB200372956 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		77189DC11D75ECB200372956 /* Build configuration list for PBXNativeTarget "My WeatherUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +516,7 @@
 				77189DC31D75ECB200372956 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
