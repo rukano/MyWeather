@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Weather Detail View Controller-->
+        <!--City weather-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WeatherDetailViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="WeatherDetailViewController" customModule="My_Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,14 +17,83 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="sRw-ES-4OE">
+                                <rect key="frame" x="20" y="72" width="560" height="231"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current temperature: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AG-IT-ryk">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIw-Ko-xXz">
+                                        <rect key="frame" x="0.0" y="30" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ik-8z-uLF">
+                                        <rect key="frame" x="0.0" y="60" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcv-jm-bhM">
+                                        <rect key="frame" x="0.0" y="90" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressure:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOa-bJ-2JL">
+                                        <rect key="frame" x="0.0" y="120" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gua-aV-hC8">
+                                        <rect key="frame" x="0.0" y="150" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forecast:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwQ-hd-gGX">
+                                        <rect key="frame" x="0.0" y="180" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EA7-5W-pb9">
+                                        <rect key="frame" x="0.0" y="210" width="560" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="sRw-ES-4OE" secondAttribute="trailing" id="6py-aA-SGT"/>
+                            <constraint firstItem="sRw-ES-4OE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="NMZ-Rg-pDH"/>
+                            <constraint firstItem="sRw-ES-4OE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cNb-nh-CJB"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="City weather" id="DNz-jq-tRP">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="lj2-wG-COk"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="forecastLabel" destination="EA7-5W-pb9" id="9mg-6f-QqD"/>
+                        <outlet property="pressureLabel" destination="gua-aV-hC8" id="bNH-nN-0Li"/>
+                        <outlet property="temperatureLabel" destination="cIw-Ko-xXz" id="wJr-FF-qhV"/>
+                        <outlet property="windLabel" destination="qcv-jm-bhM" id="QzL-li-gMQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="323" y="470"/>
+            <point key="canvasLocation" x="2663" y="470"/>
         </scene>
-        <!--Weather Table View Controller-->
+        <!--Current weather-->
         <scene sceneID="fQZ-UQ-a2f">
             <objects>
                 <tableViewController id="aDB-1L-bYK" customClass="WeatherTableViewController" customModule="My_Weather" customModuleProvider="target" sceneMemberID="viewController">
@@ -66,6 +135,7 @@
                                 <connections>
                                     <outlet property="cityName" destination="vBL-ob-yAW" id="N2U-i1-xnO"/>
                                     <outlet property="currentTemperature" destination="vKi-UP-1fX" id="7su-a5-uCr"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="UjM-ug-7VZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -74,7 +144,10 @@
                             <outlet property="delegate" destination="aDB-1L-bYK" id="8Eb-5k-0qF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="qYp-1L-EFO"/>
+                    <navigationItem key="navigationItem" title="Current weather" id="qYp-1L-EFO">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="xva-Qd-6uG"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ruu-MZ-kOL"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yv4-QM-1pZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,6 +156,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Cgt-QZ-6S3">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jo5-xG-pvg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AMA-Ln-bcM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r8z-LA-2Yi">
@@ -94,7 +168,6 @@
                         <segue destination="aDB-1L-bYK" kind="relationship" relationship="rootViewController" id="shf-T6-Yvh"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jo5-xG-pvg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1084" y="470"/>
         </scene>

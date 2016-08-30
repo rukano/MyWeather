@@ -16,9 +16,21 @@ class WeatherTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let testItem = WeatherData(cityName: "Berlin", currentTemperature: "30")
-        weatherItems.append(testItem)
+        var testItem1 = WeatherData()
+        var testItem2 = WeatherData()
+        var testItem3 = WeatherData()
         
+        testItem1.city = "Berlin"
+        testItem1.temperature = "30℃"
+
+        testItem2.city = "Karlsruhe"
+        testItem2.temperature = "38℃"
+        
+        testItem3.city = "Frankfurt"
+        testItem3.temperature = "28℃"
+        
+        weatherItems += [testItem1, testItem2, testItem3]
+                
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -47,8 +59,8 @@ class WeatherTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("WeatherCell", forIndexPath: indexPath) as! WeatherTableViewCell
         let item = weatherItems[indexPath.row]
         
-        cell.cityName.text = item.cityName
-        cell.currentTemperature.text = item.currentTemperature + "℃"
+        cell.cityName.text = item.city
+        cell.currentTemperature.text = item.temperature
         
         return cell
     }
@@ -88,14 +100,18 @@ class WeatherTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowDetail" {
+            let weatherDetail = segue.destinationViewController as! WeatherDetailViewController
+            if let selectedWeatherCell = sender as? WeatherTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedWeatherCell)!
+                let selectedWeatherData = weatherItems[indexPath.row]
+                weatherDetail.weatherData = selectedWeatherData
+            }
+        }
     }
-    */
 
 }
