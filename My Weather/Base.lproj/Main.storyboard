@@ -109,13 +109,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="City name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBL-ob-yAW">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBL-ob-yAW">
                                             <rect key="frame" x="8" y="8" width="556" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="30℃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKi-UP-1fX">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30℃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKi-UP-1fX">
                                             <rect key="frame" x="8" y="36" width="556" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -131,10 +131,14 @@
                                         <constraint firstAttribute="leadingMargin" secondItem="vBL-ob-yAW" secondAttribute="leading" id="Hd7-C1-7uz"/>
                                         <constraint firstAttribute="topMargin" secondItem="vBL-ob-yAW" secondAttribute="top" id="IUc-zJ-mdS"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="vKi-UP-1fX" secondAttribute="leading" id="KKI-Ep-mbH"/>
+                                        <constraint firstItem="nC7-g0-1pI" firstAttribute="leading" secondItem="vBL-ob-yAW" secondAttribute="trailing" constant="8" id="add-Wt-2sk"/>
+                                        <constraint firstItem="nC7-g0-1pI" firstAttribute="leading" secondItem="vKi-UP-1fX" secondAttribute="trailing" constant="8" id="dmb-l2-KDD"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="vKi-UP-1fX" secondAttribute="bottom" id="eSh-s3-pIw"/>
+                                        <constraint firstItem="vKi-UP-1fX" firstAttribute="top" secondItem="vBL-ob-yAW" secondAttribute="bottom" constant="7" id="zT4-UD-Y6G"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="nC7-g0-1pI" id="jgE-PI-MAi"/>
                                     <outlet property="cityName" destination="vBL-ob-yAW" id="N2U-i1-xnO"/>
                                     <outlet property="currentTemperature" destination="vKi-UP-1fX" id="7su-a5-uCr"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="UjM-ug-7VZ"/>

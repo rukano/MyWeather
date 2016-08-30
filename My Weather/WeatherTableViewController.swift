@@ -83,7 +83,6 @@ class WeatherTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("WeatherCell", forIndexPath: indexPath) as! WeatherTableViewCell
         let item = weatherItems[indexPath.row]
-        
         cell.cityName.text = item.city
         cell.currentTemperature.text = item.temperature
         
