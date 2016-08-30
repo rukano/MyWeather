@@ -10,7 +10,7 @@ import UIKit
 
 class WeatherTableViewCell: UITableViewCell {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var currentTemperature: UILabel!

@@ -10,6 +10,7 @@ import UIKit
 
 class WeatherDetailViewController: UIViewController {
     
+    // MARK: - Properties
     var weatherData: WeatherData?
     
     @IBOutlet weak var temperatureLabel: UILabel!

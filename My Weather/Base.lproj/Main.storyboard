@@ -109,27 +109,29 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBL-ob-yAW">
-                                            <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="City name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBL-ob-yAW">
+                                            <rect key="frame" x="8" y="8" width="556" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30℃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKi-UP-1fX">
-                                            <rect key="frame" x="8" y="36" width="584" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="30℃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKi-UP-1fX">
+                                            <rect key="frame" x="8" y="36" width="556" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nC7-g0-1pI">
+                                            <rect key="frame" x="572" y="23" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="vBL-ob-yAW" firstAttribute="trailing" secondItem="2aL-q2-DvT" secondAttribute="trailingMargin" id="Hop-Sh-8as"/>
-                                        <constraint firstItem="vKi-UP-1fX" firstAttribute="bottom" secondItem="2aL-q2-DvT" secondAttribute="bottomMargin" id="KjB-vB-uw9"/>
-                                        <constraint firstItem="vKi-UP-1fX" firstAttribute="trailing" secondItem="2aL-q2-DvT" secondAttribute="trailingMargin" id="ZHG-1j-4KJ"/>
-                                        <constraint firstItem="vBL-ob-yAW" firstAttribute="top" secondItem="2aL-q2-DvT" secondAttribute="topMargin" id="gvr-pL-QsB"/>
-                                        <constraint firstItem="vKi-UP-1fX" firstAttribute="leading" secondItem="2aL-q2-DvT" secondAttribute="leadingMargin" id="izc-dv-jY5"/>
-                                        <constraint firstItem="vBL-ob-yAW" firstAttribute="leading" secondItem="2aL-q2-DvT" secondAttribute="leadingMargin" id="uzE-Hv-keb"/>
-                                        <constraint firstItem="vKi-UP-1fX" firstAttribute="top" secondItem="vBL-ob-yAW" secondAttribute="bottom" constant="7" id="wVb-hQ-a11"/>
+                                        <constraint firstAttribute="topMargin" secondItem="vBL-ob-yAW" secondAttribute="top" id="KE8-1r-9Ph"/>
+                                        <constraint firstItem="nC7-g0-1pI" firstAttribute="centerY" secondItem="2aL-q2-DvT" secondAttribute="centerY" id="LLX-Ft-17x"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="vKi-UP-1fX" secondAttribute="leading" id="PiW-Ly-rvx"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="vBL-ob-yAW" secondAttribute="leading" id="afK-dn-hKQ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="vKi-UP-1fX" secondAttribute="bottom" id="dvb-c9-1se"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="nC7-g0-1pI" secondAttribute="trailing" id="met-nL-E5r"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
