@@ -7,20 +7,127 @@
 //
 
 import Foundation
+import CZWeatherKit
 
-class WeatherData {
-    var city = "City not found"
-    var temperature = "No temperature data"
-    var wind = "No wind data"
-    var pressure = "No pressure data"
-    var forecast = "No forecast found"
+let notificationKey = "de.rukano.MyWeatherDataUpdated"
+
+struct WeatherRawData {
+    var date: NSDate?
+    var summary: String?
+    var climacon: Climacon?
+    var humidity:Float?
+    var temperature: Float?
+    var pressure: Float?
+    var windSpeed: Float?
+    var windDirection: Float?
+    var lowTemperature: Float?
+    var highTemperature: Float?
+    var hasLoadedData = false
+}
+
+class WeatherData : CustomStringConvertible  {
     
-    init() {
+    // MARK: Properties
+    var city: String
+    var data = WeatherRawData()
+    
+    // Synthesized Properties (getters with string formatter)
+    // since you should only change the raw data from the requests
+    var temperature: String {
+        return "\(self.data.temperature!) ℃"
+    }
+    var summary: String {
+        return "\(self.data.summary!)"
+    }
+    var humidity: String {
+        return "\(self.data.humidity!)%"
+    }
+    var pressure: String {
+        return "\(self.data.pressure!) mB"
+    }
+    
+    var windSpeed: String {
+        return "\(self.data.windSpeed!) km/h"
+    }
+    
+    var windDirection: String {
+        var compassString = ""
+        var angleQuadrant = 0
+        let angle = Double(self.data.windDirection!)
+        let angleRange = 45.0
+        let angleOffset = 45.0 / 2.0
+        let angleString = ["E", "NE", "N", "NW", "W", "SW", "S", "SE", "E"]
         
+        for i in 0...8 {
+            let startAngle = (Double(i) * angleRange) - angleOffset
+            let endAngle = startAngle + angleRange
+            if angle > startAngle && angle < endAngle {
+                angleQuadrant = i
+            }
+        }
+        
+        compassString = angleString[angleQuadrant]
+        return compassString
+    }
+    
+    var lowTemperature: String {
+        return "\(self.data.lowTemperature!)℃"
+    }
+    
+    var highTemperature: String {
+        return "\(self.data.highTemperature!)℃"
+    }
+    
+    var hasLoadedData: Bool {
+        return self.data.hasLoadedData
+    }
+    
+    // Printable description
+    var description: String {
+        get {
+            if self.hasLoadedData {
+            return "\(self.city): \(self.temperature) with wind \(self.windDirection) at \(self.windSpeed)"
+            } else {
+                return "No data for city: \(self.city)"
+            }
+        }
+    }
+    
+    // MARK: Initializers
+    init(city: String) {
+        self.city = city
     }
     
     func requestData() {
-        
+        let request = CZOpenWeatherMapRequest.newCurrentRequest()
+        request.location = CZWeatherLocation(fromCity: self.city, country: "")
+        request.key = "a6851128d8593e356875637eb02df696"
+        print("Sending request", self.city)
+        request.sendWithCompletion { (data, error) in
+            if data != nil {
+                let current = data.current
+                self.data.date = current.date
+                self.data.summary = current.summary
+                self.data.climacon = current.climacon
+                self.data.humidity = current.humidity
+                self.data.temperature = round(current.temperature.c)
+                self.data.pressure = current.pressure.mb
+                self.data.windSpeed = current.windSpeed.kph
+                self.data.windDirection = current.windDirection
+                self.data.lowTemperature = current.lowTemperature.c
+                self.data.highTemperature = current.highTemperature.c
+                self.data.hasLoadedData = true
+                print("request done", self.city)
+            } else {
+                // Handle error
+            }
+            self.notifyChange()
+        }
     }
     
+    func notifyChange () {
+        print("notifying the change")
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.postNotificationName(notificationKey, object: self)
+    }
 }
