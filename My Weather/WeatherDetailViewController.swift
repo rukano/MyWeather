@@ -29,10 +29,9 @@ class WeatherDetailViewController: UIViewController {
             title = data.city
             
             // set the placeholder labels
-            temperatureLabel.text = data.temperature
-            windLabel.text = data.wind
+            temperatureLabel.text = "\(data.temperature)"
+            windLabel.text = "\(data.windDirection) at \(data.windSpeed)"
             pressureLabel.text = data.pressure
-            forecastLabel.text = data.forecast
         }
     
     }
