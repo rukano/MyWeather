@@ -15,12 +15,12 @@ class WeatherTableViewCell: UITableViewCell {
     @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var currentTemperature: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
         // Initialization code
-        activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.hidesWhenStopped = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -29,12 +29,14 @@ class WeatherTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func startedFetching() {
-        activityIndicator.startAnimating()
+    func startLoadingAnimation() {
+        print("start spinning wheel")
+        self.activityIndicator.startAnimating()
     }
-
-    func stoppedFetching() {
-        activityIndicator.stopAnimating()
+    
+    func stopLoadingAnimation() {
+        print("stop spinning wheel")
+        self.activityIndicator.stopAnimating()
     }
     
 }
