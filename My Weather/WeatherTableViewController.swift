@@ -8,7 +8,11 @@
 
 import UIKit
 
-class WeatherTableViewController: UITableViewController {
+// Global key for notifications
+let notificationKey = "de.rukano.MyWeatherDataUpdated"
+
+
+class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - Properties
     var weatherItems = [WeatherData]()
@@ -17,24 +21,22 @@ class WeatherTableViewController: UITableViewController {
     var messageFrame = UIView()
     var messageLabel = UILabel()
     var activityIndicator = UIActivityIndicatorView()
-    
     var isShowingSpinner = false
+    
+    // Search Bar
+    lazy var searchBar = UISearchBar(frame: CGRectZero)
     
     // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let testItem1 = WeatherData(city: "Munich")
-        testItem1.requestData()
-        let testItem2 = WeatherData(city: "Paris")
-        testItem2.requestData()
-        let testItem3 = WeatherData(city: "Bogota")
-        testItem3.requestData()
-        
-        weatherItems += [testItem1, testItem2, testItem3]
+
+        // Restore from last saved data
+
+        // TODO: Splash screen if it's the first time
+        print("Splash screen")
         
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        self.clearsSelectionOnViewWillAppear = false
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
@@ -47,10 +49,13 @@ class WeatherTableViewController: UITableViewController {
                        selector: #selector(receiveNotificationFromWeatherData(_:)),
                        name: notificationKey,
                        object: nil)
+        
+        // Search Bar
+        searchBar.showsCancelButton = true
+        searchBar.delegate = self
+        searchBar.placeholder = "Enter city"
+        navigationItem.titleView = searchBar
 
-        // Restore from last saved data
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,16 +67,18 @@ class WeatherTableViewController: UITableViewController {
     func receiveNotificationFromWeatherData(sender: AnyObject) {
         // Reload the data in async queue
         // because of the autolayout and the activity indicator don't play well together
-        // TODO: Maybe look for another solution for dismissing the activity indicator
+        
         dispatch_async(dispatch_get_main_queue(), {
             self.hideActivityIndicator()
             self.tableView.reloadData()
         })
-
-        
     }
 
     // MARK: IBActions
+    @IBAction func getCityFromCurrentLocation(sender: UIBarButtonItem) {
+        print("Try to use core location to get the current city")
+    }
+    
     func refresh() {
         
         // Refresh action from "pull to refresh" gesture
@@ -84,7 +91,6 @@ class WeatherTableViewController: UITableViewController {
     
     func showActivityIndicator() {
         // Show custom view in top of the view until data is loaded
-        // TODO: display spinner earlier and dismiss it when the data is laoded
         messageLabel = UILabel(frame: CGRect(x: 50, y:0, width: 200, height: 50))
         messageLabel.text = "Loading..."
         messageLabel.textColor = UIColor.whiteColor()
@@ -108,38 +114,30 @@ class WeatherTableViewController: UITableViewController {
         }
     }
     
-    
-    @IBAction func addNewCity(sender: UIBarButtonItem) {
-        // Create dialog for insterting city name
-        let alert = UIAlertController(title: "Weather at", message: "Enter city", preferredStyle: .Alert)
-        
-        // Search action
-        let searchAction = UIAlertAction(title: "Search", style: .Default) { (action:UIAlertAction) -> Void in
-            let textField = alert.textFields!.first
-            let city = textField!.text!
-            
-            // Create and request city
-            if city.characters.count > 0 {
-                let data = WeatherData(city: city)
-                data.requestData()
-                self.weatherItems.append(data)
-            }
-            
-        }
+    // MARK: Search bar delegate
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
 
-        // cancel Action
-        let cancelAction = UIAlertAction(title:"Cancel", style: .Cancel) { (action:UIAlertAction) -> Void in
-            print("cancel search")
-        }
-        
-        // Build and Display Alert
-        alert.addTextFieldWithConfigurationHandler { textField in }
-        alert.addAction(cancelAction)
-        alert.addAction(searchAction)
-        
-        presentViewController(alert, animated: true, completion: nil)
     }
     
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if let city = searchBar.text {
+            let data = WeatherData(city: city)
+                data.requestData()
+            self.weatherItems.append(data)
+            self.showActivityIndicator()
+        }
+        searchBar.resignFirstResponder()
+    }
+    
+
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -160,9 +158,13 @@ class WeatherTableViewController: UITableViewController {
         
         if item.hasLoadedData {
             cell.currentTemperature.text = item.temperature
+            cell.currentDescription.text = item.summary
+            cell.currentEmoticon.text = item.emoticon
         } else {
             // In case there is no data loaded, display messages
-            cell.currentTemperature.text = "No data"
+            cell.currentTemperature.text = "❌"
+            cell.currentDescription.text = "No data found"
+            cell.currentEmoticon.text = "⚠️"
         }
         return cell
     }

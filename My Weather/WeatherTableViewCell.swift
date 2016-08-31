@@ -14,29 +14,19 @@ class WeatherTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var currentTemperature: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var currentDescription: UILabel!
+    @IBOutlet weak var currentEmoticon: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
 
         // Initialization code
-        self.activityIndicator.hidesWhenStopped = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    
-    func startLoadingAnimation() {
-        print("start spinning wheel")
-        self.activityIndicator.startAnimating()
-    }
-    
-    func stopLoadingAnimation() {
-        print("stop spinning wheel")
-        self.activityIndicator.stopAnimating()
     }
     
 }

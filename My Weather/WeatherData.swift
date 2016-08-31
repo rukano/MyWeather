@@ -9,8 +9,6 @@
 import Foundation
 import CZWeatherKit
 
-let notificationKey = "de.rukano.MyWeatherDataUpdated"
-
 struct WeatherRawData {
     var date: NSDate?
     var summary: String?
@@ -26,6 +24,22 @@ struct WeatherRawData {
 }
 
 class WeatherData : CustomStringConvertible  {
+    // MARK: Class constants
+    static let emoticonDict = [
+        "Clear":        "☀️",
+        "Clouds":       "☁️",
+        "Rain":         "🌧",
+        "Drizzle":      "🌦",
+        "Thunderstorm": "⛈",
+        "Snow":         "🌨",
+        "Atmosphere":   "🌫",
+        "Extreme":      "🌪",
+        "Additional":   "🌊",
+        "Undefined":    "🌎",
+        // TODO: Define night icons
+        // Define more mappings if needed
+        ]
+
     
     // MARK: Properties
     var city: String
@@ -34,7 +48,7 @@ class WeatherData : CustomStringConvertible  {
     // Synthesized Properties (getters with string formatter)
     // since you should only change the raw data from the requests
     var temperature: String {
-        return "\(self.data.temperature!) ℃"
+        return "\(Int(round(self.data.temperature!))) ℃"
     }
     var summary: String {
         return "\(self.data.summary!)"
@@ -78,15 +92,21 @@ class WeatherData : CustomStringConvertible  {
         return "\(self.data.highTemperature!)℃"
     }
     
+    var emoticon: String {
+        let icon = WeatherData.emoticonDict[self.data.summary!]
+        return icon ?? "🌍"
+    }
+    
     var hasLoadedData: Bool {
         return self.data.hasLoadedData
     }
+    
     
     // Printable description
     var description: String {
         get {
             if self.hasLoadedData {
-            return "\(self.city): \(self.temperature) with wind \(self.windDirection) at \(self.windSpeed)"
+                return "\(self.city): \(self.temperature) with wind \(self.windDirection) at \(self.windSpeed)"
             } else {
                 return "No data for city: \(self.city)"
             }
