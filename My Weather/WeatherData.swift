@@ -26,6 +26,7 @@ private struct WeatherRawData {
 class WeatherData : CustomStringConvertible  {
     // MARK: Class constants
     static let emoticonDict = [
+        "ClearNight":   "🌜",
         "Clear":        "☀️",
         "Clouds":       "☁️",
         "Rain":         "🌧",
@@ -93,7 +94,9 @@ class WeatherData : CustomStringConvertible  {
     }
     
     var emoticon: String {
-        let icon = WeatherData.emoticonDict[self.data.summary!]
+        let key = self.data.summary!
+        // Check if it's night
+        let icon = WeatherData.emoticonDict[key]
         return icon ?? "🌍"
     }
     
