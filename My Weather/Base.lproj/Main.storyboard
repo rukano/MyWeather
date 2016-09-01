@@ -94,7 +94,7 @@
             </objects>
             <point key="canvasLocation" x="2663" y="470"/>
         </scene>
-        <!--Current weather-->
+        <!--Weather-->
         <scene sceneID="fQZ-UQ-a2f">
             <objects>
                 <tableViewController id="aDB-1L-bYK" customClass="WeatherTableViewController" customModule="My_Weather" customModuleProvider="target" sceneMemberID="viewController">
@@ -102,9 +102,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="ayu-hp-Dy8">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherCell" rowHeight="90" id="AdR-1u-ux0" customClass="WeatherTableViewCell" customModule="My_Weather" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="90"/>
+                                <rect key="frame" x="0.0" y="136" width="600" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AdR-1u-ux0" id="2aL-q2-DvT">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
@@ -168,17 +173,15 @@
                             <outlet property="delegate" destination="aDB-1L-bYK" id="8Eb-5k-0qF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Current weather" id="qYp-1L-EFO">
+                    <navigationItem key="navigationItem" title="Weather" id="qYp-1L-EFO">
                         <barButtonItem key="backBarButtonItem" title="Back" id="xva-Qd-6uG"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="search" id="v96-hJ-UG1">
-                            <connections>
-                                <action selector="getCityFromCurrentLocation:" destination="aDB-1L-bYK" id="HcJ-6E-DaN"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="pMB-26-2s0">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
+                    <connections>
+                        <outlet property="searchBar" destination="ayu-hp-Dy8" id="2m8-fm-pQs"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yv4-QM-1pZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

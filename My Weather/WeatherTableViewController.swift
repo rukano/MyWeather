@@ -25,7 +25,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     var isShowingSpinner = false
     
     // Search Bar
-    lazy var searchBar = UISearchBar(frame: CGRectZero)
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - Initialization
     override func viewDidLoad() {
@@ -65,10 +65,10 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
                        object: nil)
         
         // Search Bar
-        searchBar.showsCancelButton = true
+//        searchBar.showsCancelButton = true
         searchBar.delegate = self
         searchBar.placeholder = "Enter city"
-        navigationItem.titleView = searchBar
+//        navigationItem.titleView = searchBar
 
     }
     
@@ -101,9 +101,6 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     }
 
     // MARK: IBActions
-    @IBAction func getCityFromCurrentLocation(sender: UIBarButtonItem) {
-        print("Try to use core location to get the current city")
-    }
     
     func refresh() {
         // Refresh action from "pull to refresh" gesture
@@ -142,10 +139,11 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: Search bar delegate
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-
+        searchBar.showsCancelButton = true
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
     }
     
