@@ -9,8 +9,10 @@
 import Foundation
 import CZWeatherKit
 
-// this schould be provided from a file or plist
+// This should be provided from a file or plist
 let apiKey = "a6851128d8593e356875637eb02df696"
+
+// TODO: check crash when city name contains weird strings
 
 private struct WeatherRawData {
     var date: NSDate?

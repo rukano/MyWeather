@@ -9,7 +9,7 @@
 import UIKit
 
 class SplashScreenView: UIView {
-    
+
     var changesLabel: UILabel?
     
     // initializer for nibs
@@ -68,5 +68,5 @@ class SplashScreenView: UIView {
     func setChanges(text: String?) {
         changesLabel!.text = text
     }
-    
+
 }

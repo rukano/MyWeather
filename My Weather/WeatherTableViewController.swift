@@ -20,10 +20,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     let climaconsFont = UIFont(name: "Climacons-Font", size: 48.0)
     
     // Indicator while fetching data
-    var messageFrame = UIView()
-    var messageLabel = UILabel()
-    var activityIndicator = UIActivityIndicatorView()
-    var isShowingSpinner = false
+    var activityIndicator = LoadingIndicatorView()
     
     // Search Bar
     @IBOutlet weak var searchBar: UISearchBar!
@@ -37,11 +34,9 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         
         // Splash screen if it is the first time
         if !defaults.boolForKey("hasSeenSplashScreen") {
-            print("Splash screen")
+            displaySplashScreen()
             defaults.setBool(true, forKey: "hasSeenSplashScreen")
         }
-        
-        displaySplashScreen()
         
         // Load from city names
         let cities = defaults.objectForKey("cities") as? [String] ?? [String]()
@@ -115,28 +110,14 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func showActivityIndicator() {
-        // Show custom view in top of the view until data is loaded
-        messageLabel = UILabel(frame: CGRect(x: 50, y:0, width: 200, height: 50))
-        messageLabel.text = "Loading..."
-        messageLabel.textColor = UIColor.whiteColor()
-        messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25, width: 180, height: 50))
-        messageFrame.layer.cornerRadius = 15
-        messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        activityIndicator.startAnimating()
-        messageFrame.addSubview(activityIndicator)
-        messageFrame.addSubview(messageLabel)
-        view.addSubview(messageFrame)
-        self.isShowingSpinner = true
+        activityIndicator = LoadingIndicatorView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25, width: 180, height: 50))
+        view.addSubview(activityIndicator)
     }
     
     func hideActivityIndicator() {
         // Dismiss loading indicator
-        if self.isShowingSpinner {
-            self.activityIndicator.stopAnimating()
-            self.messageFrame.removeFromSuperview()
-        }
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.removeFromSuperview()
     }
     
     func displaySplashScreen() {
