@@ -65,11 +65,8 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
                        object: nil)
         
         // Search Bar
-//        searchBar.showsCancelButton = true
         searchBar.delegate = self
         searchBar.placeholder = "Enter city"
-//        navigationItem.titleView = searchBar
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -81,6 +78,9 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     func receiveNotificationFromWeatherData(sender: AnyObject) {
         // Reload the data in async queue
         // because of the autolayout and the activity indicator don't play well together
+        
+        let item = sender.object as! WeatherData
+        print(item.city, "notification received!")
         
         dispatch_async(dispatch_get_main_queue(), {
             self.hideActivityIndicator()

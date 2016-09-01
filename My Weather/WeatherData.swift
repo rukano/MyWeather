@@ -125,7 +125,7 @@ class WeatherData : CustomStringConvertible  {
         let request = CZOpenWeatherMapRequest.newCurrentRequest()
         request.location = CZWeatherLocation(fromCity: self.city, country: "")
         request.key = "a6851128d8593e356875637eb02df696"
-        print("Sending request", self.city)
+        print(self.city, "sending request...")
         request.sendWithCompletion { (data, error) in
             if data != nil {
                 let current = data.current
@@ -140,7 +140,7 @@ class WeatherData : CustomStringConvertible  {
                 self.data.lowTemperature = current.lowTemperature.c
                 self.data.highTemperature = current.highTemperature.c
                 self.data.hasLoadedData = true
-                print("request done", self.city)
+                print(self.city, "request received!", )
             } else {
                 // Handle error
             }
@@ -149,7 +149,6 @@ class WeatherData : CustomStringConvertible  {
     }
     
     func notifyChange () {
-        print("notifying the change")
         let nc = NSNotificationCenter.defaultCenter()
         nc.postNotificationName(notificationKey, object: self)
     }
