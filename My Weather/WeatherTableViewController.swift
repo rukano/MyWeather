@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 // Global key for notifications
 let notificationKey = "de.rukano.MyWeatherDataUpdated"
@@ -31,9 +32,22 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
 
         // Restore from last saved data
-
-        // TODO: Splash screen if it's the first time
-        print("Splash screen")
+        let defaults = NSUserDefaults.standardUserDefaults()
+//        print(defaults.dictionaryRepresentation())
+        
+        // Splash screen if it is the first time
+        if !defaults.boolForKey("hasSeenSplashScreen") {
+            print("Splash screen")
+            defaults.setBool(true, forKey: "hasSeenSplashScreen")
+        }
+    
+        // Load from city names
+        let cities = defaults.objectForKey("cities") as? [String] ?? [String]()
+        for city in cities {
+            let data = WeatherData(city: city)
+            data.requestData()
+            weatherItems.append(data)
+        }
         
         // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
@@ -72,6 +86,18 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
             self.hideActivityIndicator()
             self.tableView.reloadData()
         })
+        
+        // save every time a new city has been updated
+        // probably inefficient, but safe
+        // should be probably done in the appDelegate or via CoreData
+        self.saveCities()
+    }
+    
+    func saveCities() {
+        let cities = weatherItems.map { $0.city }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(cities, forKey: "cities")
+        defaults.synchronize()
     }
 
     // MARK: IBActions
@@ -80,13 +106,13 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func refresh() {
-        
         // Refresh action from "pull to refresh" gesture
         for item in weatherItems {
             item.requestData()
         }
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
+        self.saveCities()
     }
     
     func showActivityIndicator() {
@@ -180,6 +206,11 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         if editingStyle == .Delete {
             // Delete the row from the data source
             weatherItems.removeAtIndex(indexPath.row)
+            
+            // Save for the future
+            saveCities()
+            
+            // Delete the cell
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

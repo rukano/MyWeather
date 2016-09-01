@@ -9,7 +9,7 @@
 import Foundation
 import CZWeatherKit
 
-struct WeatherRawData {
+private struct WeatherRawData {
     var date: NSDate?
     var summary: String?
     var climacon: Climacon?
@@ -42,8 +42,8 @@ class WeatherData : CustomStringConvertible  {
 
     
     // MARK: Properties
+    private var data = WeatherRawData()
     var city: String
-    var data = WeatherRawData()
     
     // Synthesized Properties (getters with string formatter)
     // since you should only change the raw data from the requests
