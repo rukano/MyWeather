@@ -15,7 +15,7 @@ class WeatherTableViewCell: UITableViewCell {
     @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var currentTemperature: UILabel!
     @IBOutlet weak var currentDescription: UILabel!
-    @IBOutlet weak var currentEmoticon: UILabel!
+    @IBOutlet weak var currentClimacon: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

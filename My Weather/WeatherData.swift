@@ -9,10 +9,13 @@
 import Foundation
 import CZWeatherKit
 
+// this schould be provided from a file or plist
+let apiKey = "a6851128d8593e356875637eb02df696"
+
 private struct WeatherRawData {
     var date: NSDate?
     var summary: String?
-    var climacon: Climacon?
+    var climacon: String?
     var humidity:Float?
     var temperature: Float?
     var pressure: Float?
@@ -24,24 +27,7 @@ private struct WeatherRawData {
 }
 
 class WeatherData : CustomStringConvertible  {
-    // MARK: Class constants
-    static let emoticonDict = [
-        "ClearNight":   "🌜",
-        "Clear":        "☀️",
-        "Clouds":       "☁️",
-        "Rain":         "🌧",
-        "Drizzle":      "🌦",
-        "Thunderstorm": "⛈",
-        "Snow":         "🌨",
-        "Atmosphere":   "🌫",
-        "Extreme":      "🌪",
-        "Additional":   "🌊",
-        "Undefined":    "🌎",
-        // TODO: Define night icons
-        // Define more mappings if needed
-        ]
 
-    
     // MARK: Properties
     private var data = WeatherRawData()
     var city: String
@@ -94,16 +80,21 @@ class WeatherData : CustomStringConvertible  {
     }
     
     var emoticon: String {
-        let key = self.data.summary!
-        // Check if it's night
-        let icon = WeatherData.emoticonDict[key]
-        return icon ?? "🌍"
+        return ClimaconEmoji.getEmojiFor(self.climacon).rawValue
     }
     
     var hasLoadedData: Bool {
         return self.data.hasLoadedData
     }
     
+    var climacon: String {
+        let char = self.data.climacon!
+        if char == "~" {
+            return ""
+        } else {
+            return char
+        }
+    }
     
     // Printable description
     var description: String {
@@ -124,14 +115,13 @@ class WeatherData : CustomStringConvertible  {
     func requestData() {
         let request = CZOpenWeatherMapRequest.newCurrentRequest()
         request.location = CZWeatherLocation(fromCity: self.city, country: "")
-        request.key = "a6851128d8593e356875637eb02df696"
+        request.key = apiKey
         print(self.city, "sending request...")
         request.sendWithCompletion { (data, error) in
             if data != nil {
                 let current = data.current
                 self.data.date = current.date
                 self.data.summary = current.summary
-                self.data.climacon = current.climacon
                 self.data.humidity = current.humidity
                 self.data.temperature = round(current.temperature.c)
                 self.data.pressure = current.pressure.mb
@@ -140,7 +130,8 @@ class WeatherData : CustomStringConvertible  {
                 self.data.lowTemperature = current.lowTemperature.c
                 self.data.highTemperature = current.highTemperature.c
                 self.data.hasLoadedData = true
-                print(self.city, "request received!", )
+                self.data.climacon = String(NSString(format: "%c", current.climacon.rawValue))
+                print(self.city, "request received!")
             } else {
                 // Handle error
             }
@@ -153,3 +144,15 @@ class WeatherData : CustomStringConvertible  {
         nc.postNotificationName(notificationKey, object: self)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

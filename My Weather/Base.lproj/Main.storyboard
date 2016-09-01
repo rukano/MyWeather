@@ -6,6 +6,11 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Climacons.ttf">
+            <string>Climacons-Font</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--City weather-->
         <scene sceneID="tne-QT-ifu">
@@ -94,7 +99,7 @@
             </objects>
             <point key="canvasLocation" x="2663" y="470"/>
         </scene>
-        <!--Weather-->
+        <!--My Weather-->
         <scene sceneID="fQZ-UQ-a2f">
             <objects>
                 <tableViewController id="aDB-1L-bYK" customClass="WeatherTableViewController" customModule="My_Weather" customModuleProvider="target" sceneMemberID="viewController">
@@ -127,13 +132,13 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚠️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldp-WG-82k">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldp-WG-82k">
                                             <rect key="frame" x="8" y="8" width="73" height="73"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="ldp-WG-82k" secondAttribute="height" multiplier="1:1" id="Okd-bJ-HNy"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <fontDescription key="fontDescription" name="Climacons-Font" family="Climacons-Font" pointSize="48"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 ℃" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKi-UP-1fX">
@@ -161,8 +166,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cityName" destination="vBL-ob-yAW" id="N2U-i1-xnO"/>
+                                    <outlet property="currentClimacon" destination="ldp-WG-82k" id="TiT-EN-onr"/>
                                     <outlet property="currentDescription" destination="PaF-wN-LxY" id="Ij6-Ds-NUM"/>
-                                    <outlet property="currentEmoticon" destination="ldp-WG-82k" id="k2z-kb-m64"/>
                                     <outlet property="currentTemperature" destination="vKi-UP-1fX" id="7su-a5-uCr"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="UjM-ug-7VZ"/>
                                 </connections>
@@ -173,7 +178,7 @@
                             <outlet property="delegate" destination="aDB-1L-bYK" id="8Eb-5k-0qF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Weather" id="qYp-1L-EFO">
+                    <navigationItem key="navigationItem" title="My Weather" id="qYp-1L-EFO">
                         <barButtonItem key="backBarButtonItem" title="Back" id="xva-Qd-6uG"/>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="pMB-26-2s0">

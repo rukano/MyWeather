@@ -17,6 +17,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - Properties
     var weatherItems = [WeatherData]()
+    let climaconsFont = UIFont(name: "Climacons-Font", size: 48.0)
     
     // Indicator while fetching data
     var messageFrame = UIView()
@@ -33,7 +34,6 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
 
         // Restore from last saved data
         let defaults = NSUserDefaults.standardUserDefaults()
-//        print(defaults.dictionaryRepresentation())
         
         // Splash screen if it is the first time
         if !defaults.boolForKey("hasSeenSplashScreen") {
@@ -180,15 +180,16 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         // Set the cell labels with the required information
         cell.cityName.text = item.city
         
+        cell.currentClimacon.font = climaconsFont
         if item.hasLoadedData {
             cell.currentTemperature.text = item.temperature
             cell.currentDescription.text = item.summary
-            cell.currentEmoticon.text = item.emoticon
+            cell.currentClimacon.text = item.climacon
         } else {
             // In case there is no data loaded, display messages
             cell.currentTemperature.text = "❌"
             cell.currentDescription.text = "No data found"
-            cell.currentEmoticon.text = "⚠️"
+            cell.currentClimacon.text = "⚠️"
         }
         return cell
     }
