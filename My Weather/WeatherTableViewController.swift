@@ -40,7 +40,9 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
             print("Splash screen")
             defaults.setBool(true, forKey: "hasSeenSplashScreen")
         }
-    
+        
+        displaySplashScreen()
+        
         // Load from city names
         let cities = defaults.objectForKey("cities") as? [String] ?? [String]()
         for city in cities {
@@ -135,6 +137,14 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
             self.activityIndicator.stopAnimating()
             self.messageFrame.removeFromSuperview()
         }
+    }
+    
+    func displaySplashScreen() {
+        let filePath = NSBundle.mainBundle().pathForResource("changelog", ofType: "txt")
+        let changes = try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding) as String
+        let splashScreen = SplashScreenView(frame: UIScreen.mainScreen().bounds)
+        splashScreen.setChanges(changes)
+        UIApplication.sharedApplication().keyWindow!.addSubview(splashScreen)
     }
     
     // MARK: Search bar delegate
