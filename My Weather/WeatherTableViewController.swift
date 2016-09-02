@@ -47,7 +47,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         }
         
         // Uncomment the following line to preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
+        self.clearsSelectionOnViewWillAppear = true
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
