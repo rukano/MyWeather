@@ -15,9 +15,15 @@ class WeatherDetailViewController: UIViewController {
     var weatherData: WeatherData?
     
     @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var windLabel: UILabel!
+    @IBOutlet weak var climaconLabel: UILabel!
+    @IBOutlet weak var highTemperatureLabel: UILabel!
+    @IBOutlet weak var lowTemperatureLabel: UILabel!
+    @IBOutlet weak var moodLabel: UILabel!
+    @IBOutlet weak var compassView: UIView!
+    @IBOutlet weak var windSpeedLabel: UILabel!
+    @IBOutlet weak var windDirectionLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
-    @IBOutlet weak var forecastLabel: UILabel!
     
     
     // MARK: - Initialization
@@ -28,19 +34,30 @@ class WeatherDetailViewController: UIViewController {
             // set navigation bar
             title = data.city
             
-            // set the placeholder labels
-            temperatureLabel.text = "\(data.temperature)"
-            windLabel.text = "\(data.windDirection) at \(data.windSpeed)"
-            pressureLabel.text = data.pressure
+            if data.hasLoadedData {
+                // set the placeholder labels
+                temperatureLabel.text       = data.temperature
+                climaconLabel.text          = data.climacon
+                highTemperatureLabel.text   = data.highTemperature
+                lowTemperatureLabel.text    = data.lowTemperature
+                moodLabel.text              = data.emoticon
+                
+                // TODO: Draw compass
+                
+                windSpeedLabel.text         = data.windSpeed
+                windDirectionLabel.text     = data.windDirection
+                humidityLabel.text          = data.humidity
+                pressureLabel.text          = data.pressure
+            }
         }
-    
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 

@@ -53,6 +53,10 @@ class WeatherData : CustomStringConvertible  {
         return "\(self.data.windSpeed!) km/h"
     }
     
+    var windAngle: Double {
+        return Double(self.data.windDirection!)
+    }
+    
     var windDirection: String {
         var compassString = ""
         var angleQuadrant = 0
@@ -129,8 +133,8 @@ class WeatherData : CustomStringConvertible  {
                 self.data.pressure = current.pressure.mb
                 self.data.windSpeed = current.windSpeed.kph
                 self.data.windDirection = current.windDirection
-                self.data.lowTemperature = current.lowTemperature.c
-                self.data.highTemperature = current.highTemperature.c
+                self.data.lowTemperature = round(current.lowTemperature.c)
+                self.data.highTemperature = round(current.highTemperature.c)
                 self.data.hasLoadedData = true
                 self.data.climacon = String(NSString(format: "%c", current.climacon.rawValue))
                 print(self.city, "request received!")

@@ -134,22 +134,24 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
-        searchBar.resignFirstResponder()
+        self.searchBar.showsCancelButton = false
+        self.searchBar.resignFirstResponder()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+        self.searchBar.text = ""
+        self.searchBar.resignFirstResponder()
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        if let city = searchBar.text {
-            let data = WeatherData(city: city)
+        if let city = self.searchBar.text {
+            let data = WeatherData(city: city.capitalizedString)
                 data.requestData()
             self.weatherItems.append(data)
             self.showActivityIndicator()
         }
-        searchBar.resignFirstResponder()
+        self.searchBar.text = ""
+        self.searchBar.resignFirstResponder()
     }
     
 
