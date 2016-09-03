@@ -4,6 +4,7 @@
 //
 //  This is a mapping from climacons (clima icons) codes to Climacon-Font characters
 //  CZWeatherKit provides climacons characters
+//  https://github.com/comyar/CZWeatherKit/blob/master/CZWeatherKit/CZClimacons.h
 //  The font is provided by the app in the bundle
 //  A second layer (Emojis) are mapped to smileys from the climacons types
 //
@@ -12,6 +13,7 @@
 //
 
 import Foundation
+import CZWeatherKit
 
 enum Emoji : String {
     case Unknown = "🤔"

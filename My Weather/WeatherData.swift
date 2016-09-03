@@ -22,6 +22,8 @@
 //  Copyright © 2016 Juan A. Romero. All rights reserved.
 //
 
+// TODO: Try to get locale on metric system and use the corresponding data in F/C or K/M
+
 import Foundation
 import CZWeatherKit
 

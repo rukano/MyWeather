@@ -265,7 +265,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         // Check if the segue is the show detail connection
         if segue.identifier == "ShowDetail" {
             
-            // grad the destination and populate it with the weather data
+            // Grab the destination view and populate it with the weather data
             let weatherDetail = segue.destinationViewController as! WeatherDetailViewController
             if let selectedWeatherCell = sender as? WeatherTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedWeatherCell)!
