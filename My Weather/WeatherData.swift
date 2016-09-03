@@ -135,7 +135,7 @@ class WeatherData : CustomStringConvertible  {
             if data != nil {
                 let current = data.current
                 self.data.date = current.date
-                self.data.summary = current.summary
+                self.data.summary = current.summary ?? ""
                 self.data.humidity = current.humidity
                 self.data.temperature = round(current.temperature.c)
                 self.data.pressure = current.pressure.mb
