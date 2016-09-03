@@ -23,7 +23,7 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var highTemperatureLabel: UILabel!
     @IBOutlet weak var lowTemperatureLabel: UILabel!
     @IBOutlet weak var moodLabel: UILabel!
-    @IBOutlet weak var compassView: UIView!
+    @IBOutlet weak var compassView: WindCompassView!
     @IBOutlet weak var windSpeedLabel: UILabel!
     @IBOutlet weak var windDirectionLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
@@ -46,8 +46,7 @@ class WeatherDetailViewController: UIViewController {
                 lowTemperatureLabel.text    = data.lowTemperature
                 moodLabel.text              = data.emoticon
                 
-                // TODO: Draw compass
-                
+                compassView.degrees         = data.windAngle
                 windSpeedLabel.text         = data.windSpeed
                 windDirectionLabel.text     = data.windDirection
                 humidityLabel.text          = data.humidity
