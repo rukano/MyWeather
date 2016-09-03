@@ -2,6 +2,22 @@
 //  WeatherData.swift
 //  My Weather
 //
+//  This is the main model to represent, set and retreive weather data
+//  It uses the cocoa pod CZWeatherKit for requesting the data over the internet
+//  It requires an Open Weather Map API key which should be probably private
+//  The key is provided for demonstration purposes
+//
+//  It consists of the data model WeatherRawData which gets the data from Open Weather Map
+//  The model preserves the types of the original data
+//  It also has a flag to know if the data was loaded or not
+//
+//  The WeatherData class stores the raw data in a variable and
+//  provides synthesized members which access the data and provides
+//  the data mostly as String or the adequate type (i.e. Double instead of Float)
+//
+//  Regardless if changes were made to the data or if the data was loaded sucessfully
+//  a notification will be sent after every request
+//
 //  Created by Juan A. Romero on 30/08/16.
 //  Copyright © 2016 Juan A. Romero. All rights reserved.
 //
@@ -140,6 +156,7 @@ class WeatherData : CustomStringConvertible  {
                 print(self.city, "request received!")
             } else {
                 // Handle error
+                self.data.hasLoadedData = false
             }
             self.notifyChange()
         }

@@ -1,6 +1,14 @@
 //
 //  WeatherTableViewController.swift
 //  My Weather
+
+//  This is the main controller, here we will:
+//  - Ppopulate the content of the table
+//  - Handle the navigation, create the data model
+//  - Make the requests to fetch data from the internet
+//  - Receive and handle the notifications when the model aquires new data
+//
+//  We also handle the UI actions and store the data into defaults for later use
 //
 //  Created by Juan A. Romero on 30/08/16.
 //  Copyright © 2016 Juan A. Romero. All rights reserved.
@@ -21,6 +29,8 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     
     // Indicator while fetching data
     var activityIndicator = LoadingIndicatorView()
+    var currentActiveRequests = 0
+    // TODO: Implement request count to make the pull to refresh more accurate
     
     // Search Bar
     @IBOutlet weak var searchBar: UISearchBar!

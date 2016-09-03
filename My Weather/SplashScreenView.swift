@@ -2,6 +2,10 @@
 //  SplashScreenView.swift
 //  My Weather
 //
+//  View for the splash screen
+//  The view takes the full bounds of the windows and displays the labels
+//  One of the labels can be set externally in order to list changes
+//
 //  Created by Juan A. Romero on 01/09/16.
 //  Copyright © 2016 Juan A. Romero. All rights reserved.
 //

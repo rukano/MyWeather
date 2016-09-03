@@ -2,6 +2,11 @@
 //  ClimaconEmoji.swift
 //  My Weather
 //
+//  This is a mapping from climacons (clima icons) codes to Climacon-Font characters
+//  CZWeatherKit provides climacons characters
+//  The font is provided by the app in the bundle
+//  A second layer (Emojis) are mapped to smileys from the climacons types
+//
 //  Created by Juan A. Romero on 01/09/16.
 //  Copyright © 2016 Juan A. Romero. All rights reserved.
 //

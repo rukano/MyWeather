@@ -2,6 +2,11 @@
 //  WeatherTableViewCell.swift
 //  My Weather
 //
+//  This are the table cells for the main view
+//  The just contain the members from the view
+//  The setup and initialization is handled from the main controller
+//  since the tableView methods are implemented there
+//
 //  Created by Juan A. Romero on 30/08/16.
 //  Copyright © 2016 Juan A. Romero. All rights reserved.
 //

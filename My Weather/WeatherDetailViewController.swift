@@ -1,6 +1,10 @@
 //
-//  ViewController.swift
+//  WeatherDetailViewController.swift
 //  My Weather
+//
+//  This is the ViewController for the detailed view
+//  It holds the weather data as a member, which is passed on transition
+//  The setup takes the data and displays it properly
 //
 //  Created by Juan A. Romero on 30/08/16.
 //  Copyright © 2016 Juan A. Romero. All rights reserved.
