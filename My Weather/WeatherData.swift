@@ -68,7 +68,9 @@ class WeatherData : CustomStringConvertible  {
     }
     
     var windSpeed: String {
-        return "\(self.data.windSpeed!) km/h"
+        var speed = self.data.windSpeed!
+        speed = round(speed * 10) / 10
+        return "\(speed) km/h"
     }
     
     var windAngle: Double {
