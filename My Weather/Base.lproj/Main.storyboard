@@ -40,11 +40,14 @@
                                                     <rect key="frame" x="7" y="47" width="305" height="43"/>
                                                 </variation>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Y" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wC2-Gb-hsX">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Y" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wC2-Gb-hsX">
                                                 <rect key="frame" x="220" y="26" width="121" height="85"/>
                                                 <fontDescription key="fontDescription" name="Climacons-Font" family="Climacons-Font" pointSize="84"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="220" y="27" width="121" height="85"/>
+                                                </variation>
                                                 <variation key="widthClass=regular" misplaced="YES">
                                                     <rect key="frame" x="320" y="26" width="121" height="85"/>
                                                 </variation>
@@ -263,6 +266,7 @@
                                     <constraint firstItem="wxf-ZV-qVY" firstAttribute="top" secondItem="gII-N3-fXC" secondAttribute="top" constant="145" id="H1I-aW-wvl"/>
                                     <constraint firstItem="wxf-ZV-qVY" firstAttribute="centerY" secondItem="gII-N3-fXC" secondAttribute="centerY" id="qHs-aK-jR5"/>
                                 </constraints>
+                                <variation key="heightClass=regular" axis="vertical"/>
                                 <variation key="widthClass=regular" axis="horizontal"/>
                             </stackView>
                         </subviews>
