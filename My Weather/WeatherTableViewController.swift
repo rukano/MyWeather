@@ -30,7 +30,6 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     // Indicator while fetching data
     var activityIndicator = LoadingIndicatorView()
     var currentActiveRequests = 0
-    // TODO: Implement request count to make the pull to refresh more accurate
     
     // Search Bar
     @IBOutlet weak var searchBar: UISearchBar!
@@ -52,6 +51,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         let cities = defaults.objectForKey("cities") as? [String] ?? [String]()
         for city in cities {
             let data = WeatherData(city: city)
+            incrementRequests()
             data.requestData()
             weatherItems.append(data)
         }
@@ -82,6 +82,14 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     // MARK: - Methods
+    func incrementRequests() {
+        currentActiveRequests += 1
+    }
+    
+    func decremetRequests() {
+        currentActiveRequests -= 1
+    }
+    
     func receiveNotificationFromWeatherData(sender: AnyObject) {
         // Reload the data in async queue
         // because of the autolayout and the activity indicator don't play well together
@@ -89,10 +97,23 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         let item = sender.object as! WeatherData
         print(item.city, "notification received!")
         
+        // decrease the active request count
+        self.decremetRequests()
+        
+        // hide the activity indicator
         dispatch_async(dispatch_get_main_queue(), {
             self.hideActivityIndicator()
             self.tableView.reloadData()
         })
+        
+        // check if the refresher indicator is active
+        if let refresher = self.refreshControl {
+            // check if there are still requests in the pipeline
+            // if it's the last one, then end the refreshing indicator
+            if currentActiveRequests == 0 {
+                refresher.endRefreshing()
+            }
+        }
         
         // save every time a new city has been updated
         // probably inefficient, but safe
@@ -100,6 +121,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         self.saveCities()
     }
     
+    // save to defaults so the same cities appear between sessions
     func saveCities() {
         let cities = weatherItems.map { $0.city }
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -112,11 +134,11 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     func refresh() {
         // Refresh action from "pull to refresh" gesture
         for item in weatherItems {
+            // increase active requests for each request
+            incrementRequests()
             item.requestData()
         }
         self.tableView.reloadData()
-        self.refreshControl?.endRefreshing()
-        self.saveCities()
     }
     
     func showActivityIndicator() {
@@ -156,7 +178,12 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if let city = self.searchBar.text {
             let data = WeatherData(city: city.capitalizedString)
-                data.requestData()
+
+            // increase the request count
+            incrementRequests()
+            data.requestData()
+            
+            // add the data to the list
             self.weatherItems.append(data)
             self.showActivityIndicator()
         }
