@@ -92,7 +92,7 @@ class WeatherData : CustomStringConvertible  {
     }
     
     var emoticon: String {
-        return ClimaconEmoji.getEmojiFor(self.climacon).rawValue
+        return ClimaconMood(char: self.climacon).emoji.rawValue
     }
     
     var hasLoadedData: Bool {

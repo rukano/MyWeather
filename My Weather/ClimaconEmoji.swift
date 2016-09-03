@@ -27,8 +27,8 @@ enum Emoji : String {
     case Freezing = "😨"
 }
 
-struct ClimaconEmoji {
-    static let mapping = [
+struct ClimaconMood {
+    static let moods = [
         Emoji.Great     : "\"IJKLMg",
         Emoji.Happy     : "B",
         Emoji.Ok        : "!%(:<CD",
@@ -36,24 +36,27 @@ struct ClimaconEmoji {
         Emoji.Sad       : "$+.<",
         Emoji.Miserable : "'*-9f",
         Emoji.Afraid    : "3467?@X",
-        Emoji.Freezing  : "012W"
-        // Add more motions if needed
+        Emoji.Freezing  : "012W",
+        // Add more motions if needed (hence the trailing comma)
     ]
-    static func getEmojiFor(char: String) -> Emoji {
-        // Start guessing emoji with unknown
-        var emoji = Emoji.Unknown
-        for (key, chars) in mapping {
-
-            // if it finds the caracter in one of the values
-            // set the emoji to be the key
-            if chars.containsString(char) {
-                emoji = key
+    
+    // Define a member variable so it gets automatically added to the initializer
+    var char: String
+    
+    // Sinthesize the Emoji from the character given using the class dictionary
+    var emoji: Emoji {
+        get {
+            // Access the static dictionary and map over it. Return only the pairs that satisfy the filter function
+            let moods = ClimaconMood.moods.filter{ $0.1.containsString(char) }
+            
+            // If there are satisfying matches take the first one
+            if let mood = moods.first {
+                // And return the key [.0] -> Emoji
+                return mood.0
+            } else {
+                // Otherwise return the unknown Emoji
+                return Emoji.Unknown
             }
-            // WARNING: the character can be contained in several of the values
-            // It will return the last one found
-            // To avoid this we can check if the character is repeated and throw a warning
-            // or take the first one found or support an array of emojis for one character
         }
-        return emoji
     }
 }
