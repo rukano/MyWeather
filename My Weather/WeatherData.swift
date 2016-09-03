@@ -76,23 +76,11 @@ class WeatherData : CustomStringConvertible  {
     }
     
     var windDirection: String {
-        var compassString = ""
-        var angleQuadrant = 0
         let angle = Double(self.data.windDirection!)
-        let angleRange = 45.0
-        let angleOffset = 45.0 / 2.0
-        let angleString = ["E", "NE", "N", "NW", "W", "SW", "S", "SE", "E"]
-        
-        for i in 0...8 {
-            let startAngle = (Double(i) * angleRange) - angleOffset
-            let endAngle = startAngle + angleRange
-            if angle > startAngle && angle < endAngle {
-                angleQuadrant = i
-            }
-        }
-        
-        compassString = angleString[angleQuadrant]
-        return compassString
+        let quadrant = (angle / 360.0) * 8
+        let index = Int(round(quadrant))
+        let direction = ["E", "NE", "N", "NW", "W", "SW", "S", "SE"]
+        return direction[index % 8]
     }
     
     var lowTemperature: String {
