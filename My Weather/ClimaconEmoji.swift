@@ -15,6 +15,8 @@
 import Foundation
 import CZWeatherKit
 
+
+// MARK: Emoji types mapping
 enum Emoji : String {
     case Unknown = "🤔"
     case Great = "😎"
@@ -27,6 +29,7 @@ enum Emoji : String {
     case Freezing = "😨"
 }
 
+// MARK: Climacon maping to emojis
 struct ClimaconMood {
     static let moods = [
         Emoji.Great     : "\"IJKLMg",
