@@ -38,8 +38,8 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Get API key from file
-        self.getApiKey()
+        // Get API key and set metric system for the data
+        self.setupData()
         
         // Restore from last saved data
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -132,7 +132,8 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         defaults.synchronize()
     }
 
-    func getApiKey() {
+    func setupData() {
+        // get API Key
         let filePath = NSBundle.mainBundle().pathForResource("apikey", ofType: "txt")
         let key = try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding) as String
         WeatherData.apiKey = key

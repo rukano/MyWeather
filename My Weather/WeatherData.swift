@@ -42,9 +42,10 @@ private struct WeatherRawData {
 }
 
 class WeatherData : CustomStringConvertible  {
+    // Class members
     static var apiKey: String?
 
-    // MARK: Properties
+    // MARK: Instance Properties
     private var data = WeatherRawData()
     var city: String
     

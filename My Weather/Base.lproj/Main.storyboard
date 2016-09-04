@@ -70,6 +70,12 @@
                                                         <include reference="IRk-4k-KNe"/>
                                                     </mask>
                                                 </variation>
+                                                <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
+                                                    <rect key="frame" x="320" y="111" width="121" height="98"/>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="120" y="27" width="121" height="85"/>
+                                                </variation>
                                                 <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
                                                     <rect key="frame" x="320" y="27" width="121" height="85"/>
                                                 </variation>
@@ -348,13 +354,12 @@
                                         <include reference="Ycd-q0-NW9"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=compact-widthClass=regular" axis="horizontal">
+                                <variation key="heightClass=compact-widthClass=regular">
                                     <mask key="constraints">
                                         <exclude reference="gH8-XJ-Uj4"/>
                                         <exclude reference="Ycd-q0-NW9"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" axis="vertical"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
