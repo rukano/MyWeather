@@ -12,7 +12,11 @@ import UIKit
 import CoreGraphics
 
 class WindCompassView: UIView {
-    var degrees = 0.0
+    var degrees = 0.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     override func drawRect(rect: CGRect) {
         // Set up context

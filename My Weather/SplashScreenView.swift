@@ -26,7 +26,7 @@ class SplashScreenView: UIView {
         super.init(frame: frame)
         
         // Tap to dismiss recognizer
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissView))
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissView(_:)))
         self.addGestureRecognizer(tapRecognizer)
         self.backgroundColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.99)
         
@@ -65,11 +65,15 @@ class SplashScreenView: UIView {
     }
     
     func dismissView(recognizer: UITapGestureRecognizer) {
-        self.resignFirstResponder()
-        self.removeFromSuperview()
+        switch recognizer.state {
+        case .Ended:
+            self.resignFirstResponder()
+            self.removeFromSuperview()
+        default: break
+        }
     }
     
-    func setChanges(text: String?) {
+    func setChangesDisplay(text: String?) {
         changesLabel!.text = text
     }
 

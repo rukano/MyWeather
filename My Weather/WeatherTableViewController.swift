@@ -54,7 +54,6 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         let cities = defaults.objectForKey("cities") as? [String] ?? [String]()
         for city in cities {
             let data = WeatherData(city: city)
-            incrementRequests()
             data.requestData()
             weatherItems.append(data)
         }
@@ -85,43 +84,33 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     // MARK: - Methods
-    func incrementRequests() {
-        currentActiveRequests += 1
-    }
-    
-    func decremetRequests() {
-        currentActiveRequests -= 1
-    }
-    
     func receiveNotificationFromWeatherData(sender: AnyObject) {
-        // Reload the data in async queue
-        // because of the autolayout and the activity indicator don't play well together
-        
+
+        // Get the object that has the new data
         let item = sender.object as! WeatherData
         print(item.city, "notification received!")
         
-        // decrease the active request count
-        self.decremetRequests()
-        
-        // hide the activity indicator
-        dispatch_async(dispatch_get_main_queue(), {
-            self.hideActivityIndicator()
-            self.tableView.reloadData()
-        })
-        
-        // check if the refresher indicator is active
-        if let refresher = self.refreshControl {
-            // check if there are still requests in the pipeline
-            // if it's the last one, then end the refreshing indicator
-            if currentActiveRequests == 0 {
-                refresher.endRefreshing()
-            }
+        // check if it was the last request
+        if WeatherData.openRequests == 0 {
+            
+            // and stop the refresher indicator
+            self.refreshControl?.endRefreshing()
+            
+            // save the state for each new object created or refreshed
+            self.saveCities()
         }
         
-        // save every time a new city has been updated
-        // probably inefficient, but safe
-        // should be probably done in the appDelegate or via CoreData
-        self.saveCities()
+        // Perform some GUI functions async
+        dispatch_async(dispatch_get_main_queue(), {
+            // Hide the created loading indicator
+            self.hideActivityIndicator()
+            
+            // request the table to reload the data
+            self.tableView.reloadData()
+            
+        })
+        
+
     }
     
     // save to defaults so the same cities appear between sessions
@@ -131,21 +120,19 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         defaults.setObject(cities, forKey: "cities")
         defaults.synchronize()
     }
-
+    
     func setupData() {
         // get API Key
         let filePath = NSBundle.mainBundle().pathForResource("apikey", ofType: "txt")
         let key = try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding) as String
         WeatherData.apiKey = key
     }
-
+    
     // MARK: IBActions
     
     func refresh() {
         // Refresh action from "pull to refresh" gesture
         for item in weatherItems {
-            // increase active requests for each request
-            incrementRequests()
             item.requestData()
         }
         self.tableView.reloadData()
@@ -166,10 +153,10 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         let filePath = NSBundle.mainBundle().pathForResource("changelog", ofType: "txt")
         let changes = try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding) as String
         let splashScreen = SplashScreenView(frame: UIScreen.mainScreen().bounds)
-        splashScreen.setChanges(changes)
+        splashScreen.setChangesDisplay(changes)
         UIApplication.sharedApplication().keyWindow!.addSubview(splashScreen)
     }
-        
+    
     // MARK: Search bar delegate
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
@@ -188,9 +175,8 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if let city = self.searchBar.text {
             let data = WeatherData(city: city.capitalizedString)
-
+            
             // increase the request count
-            incrementRequests()
             data.requestData()
             
             // add the data to the list
@@ -201,7 +187,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         self.searchBar.resignFirstResponder()
     }
     
-
+    
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -226,7 +212,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
             cell.currentDescription.text = item.summary
             cell.currentClimacon.text = item.climacon
         } else {
-            // In case there is no data loaded, display messages
+            // In case there is no data loaded, display messages and icons
             cell.currentTemperature.text = "❌"
             cell.currentDescription.text = "No data found"
             cell.currentClimacon.text = "⚠️"

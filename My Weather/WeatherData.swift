@@ -43,7 +43,8 @@ private struct WeatherRawData {
 class WeatherData : CustomStringConvertible  {
     // Class members
     static var apiKey: String?
-
+    static var openRequests = 0
+    
     // MARK: Instance Properties
     private var data = WeatherRawData()
     var city: String
@@ -95,19 +96,21 @@ class WeatherData : CustomStringConvertible  {
     
     var hasLoadedData: Bool = false {
         didSet {
-            // notify when data has loaded or not
+            // decrease the requests
+            WeatherData.openRequests -= 1
+
+            // print the state
+            print("\(self.city) hast loaded data succesfully: \(self.hasLoadedData)")
+            
+            // and notify the controller
             let nc = NSNotificationCenter.defaultCenter()
             nc.postNotificationName(notificationKey, object: self)
+
         }
     }
     
     var climacon: String {
-        let char = self.data.climacon!
-        if char == "~" {
-            return ""
-        } else {
-            return char
-        }
+        return self.data.climacon!
     }
     
     // Printable description
@@ -127,15 +130,25 @@ class WeatherData : CustomStringConvertible  {
     }
     
     func requestData() {
+
+        // Prepare request
         let request = CZOpenWeatherMapRequest.newCurrentRequest()
         request.location = CZWeatherLocation(fromCity: self.city, country: "")
+        
         if let key = WeatherData.apiKey {
             request.key = key
         } else {
             fatalError("Please provide a valid open weather map API key on the apikey.txt file")
         }
+
         print(self.city, "sending request...")
+
+        // increment number of requests
+        WeatherData.openRequests += 1
+
+        // do the actual request
         request.sendWithCompletion { (data, error) in
+
             if data != nil {
                 let current = data.current
                 self.data.date = current.date
@@ -149,10 +162,10 @@ class WeatherData : CustomStringConvertible  {
                 self.data.highTemperature = round(current.highTemperature.c)
                 self.data.climacon = String(NSString(format: "%c", current.climacon.rawValue))
                 self.hasLoadedData = true
-                print(self.city, "request received!")
             } else {
                 // Handle error
                 self.hasLoadedData = false
+
             }
         }
     }
