@@ -33,13 +33,13 @@ enum Emoji : String {
 struct ClimaconMood {
     static let moods = [
         Emoji.Great     : "\"IJKLMg",
-        Emoji.Happy     : "B",
-        Emoji.Ok        : "!%(:<CD",
-        Emoji.Sleepy    : "#&),/58;>AENOPQRSTUV",
-        Emoji.Sad       : "$+.<",
-        Emoji.Miserable : "'*-9f",
-        Emoji.Afraid    : "3467?@X",
-        Emoji.Freezing  : "012W",
+        .Happy          : "B",
+        .Ok             : "!%(:<CD",
+        .Sleepy         : "#&),/58;>AENOPQRSTUV",
+        .Sad            : "$+.<",
+        .Miserable      : "'*-9f",
+        .Afraid         : "3467?@X",
+        .Freezing       : "012W",
         // Add more motions if needed (hence the trailing comma)
     ]
     
@@ -58,7 +58,7 @@ struct ClimaconMood {
                 return mood.0
             } else {
                 // Otherwise return the unknown Emoji
-                return Emoji.Unknown
+                return .Unknown
             }
         }
     }
