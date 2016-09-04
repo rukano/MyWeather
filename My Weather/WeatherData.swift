@@ -38,7 +38,6 @@ private struct WeatherRawData {
     var windDirection: Float?
     var lowTemperature: Float?
     var highTemperature: Float?
-    var hasLoadedData = false
 }
 
 class WeatherData : CustomStringConvertible  {
@@ -94,8 +93,12 @@ class WeatherData : CustomStringConvertible  {
         return ClimaconMood(char: self.climacon).emoji.rawValue
     }
     
-    var hasLoadedData: Bool {
-        return self.data.hasLoadedData
+    var hasLoadedData: Bool = false {
+        didSet {
+            // notify when data has loaded or not
+            let nc = NSNotificationCenter.defaultCenter()
+            nc.postNotificationName(notificationKey, object: self)
+        }
     }
     
     var climacon: String {
@@ -144,20 +147,14 @@ class WeatherData : CustomStringConvertible  {
                 self.data.windDirection = current.windDirection
                 self.data.lowTemperature = round(current.lowTemperature.c)
                 self.data.highTemperature = round(current.highTemperature.c)
-                self.data.hasLoadedData = true
                 self.data.climacon = String(NSString(format: "%c", current.climacon.rawValue))
+                self.hasLoadedData = true
                 print(self.city, "request received!")
             } else {
                 // Handle error
-                self.data.hasLoadedData = false
+                self.hasLoadedData = false
             }
-            self.notifyChange()
         }
-    }
-    
-    func notifyChange () {
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.postNotificationName(notificationKey, object: self)
     }
 }
 
