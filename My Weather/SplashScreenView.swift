@@ -65,11 +65,9 @@ class SplashScreenView: UIView {
     }
     
     func dismissView(recognizer: UITapGestureRecognizer) {
-        switch recognizer.state {
-        case .Ended:
+        if recognizer.state == .Ended {
             self.resignFirstResponder()
             self.removeFromSuperview()
-        default: break
         }
     }
     

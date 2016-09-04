@@ -135,7 +135,6 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         for item in weatherItems {
             item.requestData()
         }
-        self.tableView.reloadData()
     }
     
     func showActivityIndicator() {

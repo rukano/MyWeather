@@ -59,7 +59,7 @@ class WeatherData : CustomStringConvertible  {
     }
     var humidity: String {
         return "\(self.data.humidity!)%"
-    }
+    }   
     var pressure: String {
         return "\(self.data.pressure!) mB"
     }
@@ -94,20 +94,7 @@ class WeatherData : CustomStringConvertible  {
         return ClimaconMood(char: self.climacon).emoji.rawValue
     }
     
-    var hasLoadedData: Bool = false {
-        didSet {
-            // decrease the requests
-            WeatherData.openRequests -= 1
-
-            // print the state
-            print("\(self.city) hast loaded data succesfully: \(self.hasLoadedData)")
-            
-            // and notify the controller
-            let nc = NSNotificationCenter.defaultCenter()
-            nc.postNotificationName(notificationKey, object: self)
-
-        }
-    }
+    var hasLoadedData = false
     
     var climacon: String {
         return self.data.climacon!
@@ -148,7 +135,6 @@ class WeatherData : CustomStringConvertible  {
 
         // do the actual request
         request.sendWithCompletion { (data, error) in
-
             if data != nil {
                 let current = data.current
                 self.data.date = current.date
@@ -165,8 +151,15 @@ class WeatherData : CustomStringConvertible  {
             } else {
                 // Handle error
                 self.hasLoadedData = false
-
             }
+            
+            // Reduce the requests
+            WeatherData.openRequests -= 1
+            
+            // and notify the controller
+            let nc = NSNotificationCenter.defaultCenter()
+            nc.postNotificationName(notificationKey, object: self)
+
         }
     }
 }
