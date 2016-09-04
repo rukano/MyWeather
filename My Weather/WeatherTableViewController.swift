@@ -132,6 +132,12 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         defaults.synchronize()
     }
 
+    func getApiKey() {
+        let filePath = NSBundle.mainBundle().pathForResource("apikey", ofType: "txt")
+        let key = try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding) as String
+        WeatherData.apiKey = key
+    }
+
     // MARK: IBActions
     
     func refresh() {
@@ -162,13 +168,7 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         splashScreen.setChanges(changes)
         UIApplication.sharedApplication().keyWindow!.addSubview(splashScreen)
     }
-    
-    func getApiKey() {
-        let filePath = NSBundle.mainBundle().pathForResource("apikey", ofType: "txt")
-        let key = try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding) as String
-        WeatherData.apiKey = key
-    }
-    
+        
     // MARK: Search bar delegate
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
