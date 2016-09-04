@@ -27,11 +27,6 @@
 import Foundation
 import CZWeatherKit
 
-// This should be provided from a file or plist
-let apiKey = "a6851128d8593e356875637eb02df696"
-
-// TODO: check crash when city name contains weird strings
-
 private struct WeatherRawData {
     var date: NSDate?
     var summary: String?
@@ -47,6 +42,7 @@ private struct WeatherRawData {
 }
 
 class WeatherData : CustomStringConvertible  {
+    static var apiKey: String?
 
     // MARK: Properties
     private var data = WeatherRawData()
@@ -129,7 +125,11 @@ class WeatherData : CustomStringConvertible  {
     func requestData() {
         let request = CZOpenWeatherMapRequest.newCurrentRequest()
         request.location = CZWeatherLocation(fromCity: self.city, country: "")
-        request.key = apiKey
+        if let key = WeatherData.apiKey {
+            request.key = key
+        } else {
+            fatalError("Please provide a valid open weather map API key on the apikey.txt file")
+        }
         print(self.city, "sending request...")
         request.sendWithCompletion { (data, error) in
             if data != nil {

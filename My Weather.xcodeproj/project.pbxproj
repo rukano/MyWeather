@@ -24,6 +24,7 @@
 		771DE4CA1D786ED000E76F3C /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771DE4C91D786ED000E76F3C /* LoadingIndicatorView.swift */; };
 		771DE4CC1D786F0700E76F3C /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771DE4CB1D786F0700E76F3C /* SplashScreenView.swift */; };
 		777DE31D1D781A070005AD8D /* Climacons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 777DE31C1D781A070005AD8D /* Climacons.ttf */; };
+		77B862FE1D7C5893008AAAA3 /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 77B862FD1D7C5893008AAAA3 /* apikey.txt */; };
 		77F19E181D7983A700C4024F /* WindCompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F19E171D7983A700C4024F /* WindCompassView.swift */; };
 		8334ABC07897377F1BFC71BC /* Pods_My_WeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F405E8ED6323D4F2049F74C3 /* Pods_My_WeatherTests.framework */; };
 		94517E3EF16DAC38AF0FE17F /* Pods_My_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3FCE66FACA2CFB9032E463 /* Pods_My_Weather.framework */; };
@@ -74,6 +75,7 @@
 		771DE4C91D786ED000E76F3C /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		771DE4CB1D786F0700E76F3C /* SplashScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		777DE31C1D781A070005AD8D /* Climacons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Climacons.ttf; sourceTree = "<group>"; };
+		77B862FD1D7C5893008AAAA3 /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
 		77F19E171D7983A700C4024F /* WindCompassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindCompassView.swift; sourceTree = "<group>"; };
 		9B3FCE66FACA2CFB9032E463 /* Pods_My_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD083960852DECD3271CA4B9 /* Pods-My Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Weather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My Weather/Pods-My Weather.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				77189D971D75ECB200372956 /* Main.storyboard */,
 				77189D9F1D75ECB200372956 /* LaunchScreen.storyboard */,
 				77189D9D1D75ECB200372956 /* Assets.xcassets */,
+				77B862FD1D7C5893008AAAA3 /* apikey.txt */,
 				771DE4C71D78682C00E76F3C /* changelog.txt */,
 				77189DA21D75ECB200372956 /* Info.plist */,
 				77189D9A1D75ECB200372956 /* My_Weather.xcdatamodeld */,
@@ -309,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				771DE4C81D78682C00E76F3C /* changelog.txt in Resources */,
+				77B862FE1D7C5893008AAAA3 /* apikey.txt in Resources */,
 				77189DA11D75ECB200372956 /* LaunchScreen.storyboard in Resources */,
 				77189D9E1D75ECB200372956 /* Assets.xcassets in Resources */,
 				777DE31D1D781A070005AD8D /* Climacons.ttf in Resources */,

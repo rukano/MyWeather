@@ -37,7 +37,10 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
     // MARK: - Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Get API key from file
+        self.getApiKey()
+        
         // Restore from last saved data
         let defaults = NSUserDefaults.standardUserDefaults()
         
@@ -158,6 +161,12 @@ class WeatherTableViewController: UITableViewController, UISearchBarDelegate {
         let splashScreen = SplashScreenView(frame: UIScreen.mainScreen().bounds)
         splashScreen.setChanges(changes)
         UIApplication.sharedApplication().keyWindow!.addSubview(splashScreen)
+    }
+    
+    func getApiKey() {
+        let filePath = NSBundle.mainBundle().pathForResource("apikey", ofType: "txt")
+        let key = try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding) as String
+        WeatherData.apiKey = key
     }
     
     // MARK: Search bar delegate
